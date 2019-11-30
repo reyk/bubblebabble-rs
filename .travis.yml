@@ -12,3 +12,6 @@ script:
   - cargo clippy --verbose --all -- --verbose
   - cargo build --verbose --all
   - cargo test --verbose --all
+before_install:
+  - rustup component add rustfmt
+  - rustup component add clippy
