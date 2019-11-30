@@ -11,3 +11,4 @@ keywords = ["ipv6", "ssh", "bubblebabble"]
 
 [badges]
 travis-ci = { repository = "reyk/bubblebabble-rs", branch = "master" }
+appveyor = { repository = "reyk/bubblebabble-rs", branch = "master", service = "github" }
