@@ -1,9 +1,9 @@
 [package]
 name = "bubblebabble"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Reyk Floeter <contact@reykfloeter.com>"]
 edition = "2018"
-license = "ISC"
+license = "BSD-2-Clause"
 readme = "README.md"
 description = "The Bubble Babble Binary Data Encoding"
 repository = "https://github.com/reyk/bubblebabble-rs"
