@@ -25,13 +25,30 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-use std::net::Ipv6Addr;
-
 //! Bubble Babble Binary Data Encoding
 //!
 //! Convert `bytes` to the "Bubble Babble" data encoding that was defined
-//! as a mechanism to encoding SSH public key fingerprints in a human-readable
-//! format.
+//! as a mechanism to encode SSH public key fingerprints or any binary data
+//! in a human-readable format.
+//!
+//! # Examples
+//!
+//! ```rust
+//! use bubblebabble::*;
+//! use std::net::Ipv6Addr;
+//!
+//! // Convert 128-bit binary to bubblebabble
+//! let data = [
+//!     0x2a, 0x0a, 0xe5, 0xc0, 0, 0x2, 0, 0x5, 0x5c, 0xf9, 0xcc, 0xc8, 0x7c, 0x48, 0x97, 0xc0,
+//! ];
+//! let babble = bubblebabble(&data);
+//! assert_eq!(babble, "xepib-panus-bubub-dubyb-hilyz-nefas-myzug-mihos-bexux");
+//!
+//! // Convert IPv6 address to stablebabble
+//! let localhost: Ipv6Addr = "::1".parse().unwrap();
+//! let babbleaddr = stablebabble(&localhost.octets());
+//! assert_eq!(babbleaddr, "xebab-7wa-caxax");
+//! ```
 //!
 //! # See Also
 //!
@@ -139,16 +156,59 @@ fn bubblebabble_impl(bytes: &[u8], use_seed: bool) -> String {
     result.replace("babab", "wa")
 }
 
-fn main() {
-    let tests = [
-        Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 0),
-        Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 1),
-        Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 2),
-        "2a0a:e5c0:2:5:5cf9:ccc8:7c48:97c0".parse().unwrap(),
-        "fe80::4685:ff:fe76:1722".parse().unwrap(),
-    ];
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::net::Ipv6Addr;
 
-    for addr in tests.iter() {
-        eprintln!("{} => {}", addr, stablebabble(&addr.octets()));
+    #[test]
+    fn test_bubblebabble() {
+        let tests = [
+            (
+                Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 0),
+                "xebab-bybab-bebub-bybib-bebib-bybub-bebab-bybab-bexux",
+            ),
+            (
+                Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 1),
+                "xebab-bybab-bebub-bybib-bebib-bybub-bebab-bybab-cixux",
+            ),
+            (
+                Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 2),
+                "xebab-bybab-bebub-bybib-bebib-bybub-bebab-bybab-doxux",
+            ),
+            (
+                "2a0a:e5c0:2:5:5cf9:ccc8:7c48:97c0".parse().unwrap(),
+                "xepib-panus-bubub-dubyb-hilyz-nefas-myzug-mihos-bexux",
+            ),
+            (
+                "fe80::4685:ff:fe76:1722".parse().unwrap(),
+                "xuzim-bobab-bobib-bobab-bucum-hibiz-zuzil-kyhed-duxix",
+            ),
+        ];
+
+        for addr in tests.iter() {
+            assert_eq!(bubblebabble(&(addr.0).octets()), addr.1);
+        }
+    }
+
+    #[test]
+    fn test_stablebabble() {
+        let tests = [
+            (Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 0), "xebab-7wa-baxax"),
+            (Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 1), "xebab-7wa-caxax"),
+            (Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 2), "xebab-7wa-daxax"),
+            (
+                "2a0a:e5c0:2:5:5cf9:ccc8:7c48:97c0".parse().unwrap(),
+                "xepib-pones-wa-dabab-helaz-nofas-mezag-mihos-baxax",
+            ),
+            (
+                "fe80::4685:ff:fe76:1722".parse().unwrap(),
+                "xuzim-3wa-becim-habaz-zozil-kahod-daxax",
+            ),
+        ];
+
+        for addr in tests.iter() {
+            assert_eq!(stablebabble(&(addr.0).octets()), addr.1);
+        }
     }
 }

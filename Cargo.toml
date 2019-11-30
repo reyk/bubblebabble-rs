@@ -3,6 +3,11 @@ name = "bubblebabble"
 version = "0.1.0"
 authors = ["Reyk Floeter <contact@reykfloeter.com>"]
 edition = "2018"
+license = "ISC"
+readme = "README.md"
 description = "The Bubble Babble Binary Data Encoding"
 repository = "https://github.com/reyk/bubblebabble-rs"
 keywords = ["ipv6", "ssh", "bubblebabble"]
+
+[badges]
+travis-ci = { repository = "reyk/bubblebabble-rs", branch = "master" }
