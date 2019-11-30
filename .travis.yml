@@ -1,0 +1,6 @@
+dist: bionic
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
