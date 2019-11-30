@@ -1,8 +1,8 @@
 # Bubble Babble Binary Data Encoding
 
-[![docs.rs](https://docs.rs/bubblebabble/badge.svg)
+[![docs.rs](https://docs.rs/bubblebabble/badge.svg)](https://docs.rs/bubblebabble)
 [![Crates.IO](https://img.shields.io/crates/v/bubblebabble.svg)](https://crates.io/crates/bubblebabble)
-[![Build Status](https://travis-ci.org/reyk/rust-libtls.svg?branch=master)](https://travis-ci.org/reyk/bubblebabble-rs)
+[![Build Status](https://travis-ci.org/reyk/bubblebabble-rs.svg?branch=master)](https://travis-ci.org/reyk/bubblebabble-rs)
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](https://raw.githubusercontent.com/reyk/bubblebabble-rs/master/LICENSE)
 
 Convert `bytes` to the "Bubble Babble" data encoding that was defined
