@@ -34,6 +34,6 @@ assert_eq!(babbleaddr, "xebab-7wa-caxax");
 
 ## Copyright and license
 
-Licensed under an BSD-style license, see [LICENSE] for details.
+Licensed under a BSD-style license, see [LICENSE] for details.
 
 [LICENSE]: LICENSE
